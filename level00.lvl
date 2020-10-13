@@ -1,0 +1,5 @@
+background;background
+ground;ground
+hero;sprite;150;ground;2
+sprite;friend;600;ground
+warp;warp;700;ground;level01
