@@ -1,0 +1,54 @@
+import pygame, sys
+from sprite import Sprite
+from sprite_controlled import SpriteControlled
+from scene import Scene
+import math
+
+def main():
+    #Load
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
+    quit_game = False
+    
+    pygame.mouse.set_visible(False) #Hide the mouse to leave only the cursor sprite visible
+
+
+
+    level00 = Scene("level00", "background.png", "ground.png")
+    level01 = Scene("level01", "background1.png", "ground1.png")
+    level02 = Scene("level02", "background.png", "ground.png")
+    scenes = {}
+    scenes["level00"] = level00
+    scenes["level01"] = level01
+    scenes["level02"] = level02
+    current_scene = level00
+
+    def change_scene(name):
+        nonlocal current_scene
+        current_scene = scenes[name]
+
+    #Game Loop
+    while not(quit_game): #while the "quit" bool is false
+        #Inputs
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    quit_game = True
+            
+        current_scene.inputs(events)
+                
+        #Update
+       
+        current_scene.update(change_scene)
+
+        #Draw
+        screen.fill((0,0,0)) #color the screen black
+        current_scene.draw(screen)
+        pygame.display.update() #updates the entire display. Can pass argument to update part of display instead
+
+        
+if __name__ == "__main__":
+    main()
