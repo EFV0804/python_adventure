@@ -1,10 +1,5 @@
 import pygame, sys
-from sprite import Sprite
-from sprite_controlled import SpriteControlled
 from scene import Scene
-from level00 import Level00
-from level01 import Level01
-from level02 import Level02
 import math
 
 def main():
@@ -12,23 +7,22 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     quit_game = False
-    
     pygame.mouse.set_visible(False) #Hide the mouse to leave only the cursor sprite visible
 
 
 
-    level00 = Level00("level00", "background.png", "ground.png")
-    level01 = Level01("level01", "background1.png", "ground1.png")
-    #level02 = Level02("level02", "background.png", "ground.png")
+    level00 = Scene('level00.lvl')
+    level01 = Scene('level01.lvl')
     scenes = {}
     scenes["level00"] = level00
     scenes["level01"] = level01
-    #scenes["level02"] = level02
     current_scene = level00
 
-    def change_scene(name):
+    def change_scene(name, x):
         nonlocal current_scene
         current_scene = scenes[name]
+        current_scene.hero.x = x
+        current_scene.hero.is_moving = False
 
     #Game Loop
     while not(quit_game): #while the "quit" bool is false
