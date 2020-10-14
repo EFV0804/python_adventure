@@ -2,6 +2,7 @@ import pygame
 from sprite_controlled import SpriteControlled
 from sprite import Sprite
 from warp import Warp
+from ui_panel import UiPanel
 
 class Scene:
 
@@ -21,6 +22,7 @@ class Scene:
         self.warps=[]
         self.font = pygame.font.Font(None, 24) #define font
         self.collision_text = self.font.render("Move! Fool!", False, (0,0,0,)) #declare variable to display in case of collision
+        self.panel = UiPanel(0,0,800,100)
 
         for line in data:
             cell=line.split(";")
@@ -51,8 +53,9 @@ class Scene:
                 height=0
                 if(cell[3]=="ground"):
                     height=-1
-                warp=Warp(int(cell[2]),height,cell[1]+".png",False,eval(cell[4]))
+                warp=Warp(int(cell[2]),height,cell[1]+".png",True,eval(cell[4]))
                 self.warps.append(warp)
+
         # Set Height
         if(self.hero.y==-1):
             self.hero.y = ground_height
@@ -75,6 +78,7 @@ class Scene:
         for w in self.warps:
             if(self.hero.intersects(w)):
                 change_scene(w.to_scene, w.to_scene_x)
+        self.panel.update()
 
     def draw(self, screen):
         self.background.draw(screen)
@@ -87,4 +91,5 @@ class Scene:
         for s in self.sprites:
             if self.hero.intersects(s): #if there's a collision between hero and friend (class method)
                 screen.blit(self.collision_text, (self.hero.x, self.hero.y - 200)) #display the text declared in the load section, with position.
+        self.panel.draw(screen)
         self.cursor.draw(screen)

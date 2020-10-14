@@ -10,7 +10,6 @@ def main():
     pygame.mouse.set_visible(False) #Hide the mouse to leave only the cursor sprite visible
 
 
-
     level00 = Scene("level00.lvl")
     level01 = Scene("level01.lvl")
     scenes = {}
