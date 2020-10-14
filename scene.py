@@ -23,6 +23,7 @@ class Scene:
         self.font = pygame.font.Font(None, 24) #define font
         self.collision_text = self.font.render("Move! Fool!", False, (0,0,0,)) #declare variable to display in case of collision
         self.panel = UiPanel(0,0,800,100)
+        #self.panel.set_visible(True)
 
         for line in data:
             cell=line.split(";")
@@ -75,10 +76,10 @@ class Scene:
     def update(self, change_scene):
         self.cursor.set_position(pygame.mouse.get_pos())
         self.hero.update()
+        self.panel.update()
         for w in self.warps:
             if(self.hero.intersects(w)):
                 change_scene(w.to_scene, w.to_scene_x)
-        self.panel.update()
 
     def draw(self, screen):
         self.background.draw(screen)
@@ -88,8 +89,8 @@ class Scene:
         for w in self.warps:
             w.draw(screen)
         self.hero.draw(screen)
-        for s in self.sprites:
-            if self.hero.intersects(s): #if there's a collision between hero and friend (class method)
-                screen.blit(self.collision_text, (self.hero.x, self.hero.y - 200)) #display the text declared in the load section, with position.
         self.panel.draw(screen)
         self.cursor.draw(screen)
+        for s in self.sprites:
+            if self.hero.intersects(s): #if there's a collision between hero and friend (class method)
+                screen.blit(self.collision_text, (self.hero.x, self.hero.y - 150)) #display the text declared in the load section, with position.

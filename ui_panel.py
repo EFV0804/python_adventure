@@ -16,4 +16,4 @@ class UiPanel:
         pass
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.w, self.y))
+        pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.w, self.h))

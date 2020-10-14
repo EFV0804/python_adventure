@@ -1,6 +1,5 @@
-import pygame, sys
+import pygame, sys, math
 from scene import Scene
-import math
 
 def main():
     #Load
@@ -8,7 +7,6 @@ def main():
     screen = pygame.display.set_mode((800, 600))
     quit_game = False
     pygame.mouse.set_visible(False) #Hide the mouse to leave only the cursor sprite visible
-
 
     level00 = Scene("level00.lvl")
     level01 = Scene("level01.lvl")
