@@ -1,20 +1,16 @@
 import pygame
+from ui_elements import UiElements
 
-class UiPanel:
+class UiPanel(UiElements):
     def __init__(self, x, y, w, h):
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
-        self.visible = True
+        UiElements.__init__(self, x, y, w, h)
         self.color = (255,255,255)
-        self.events = {}
         self.is_hover = False
-        self.set_event("hover_in", self.on_hover_in)
-        self.set_event("hover_out", self.on_hover_out)
+        UiElements.add_event(self, "hover_in", self.on_hover_in)
+        UiElements.add_event(self, "hover_out", self.on_hover_out)
     
-    def set_event(self, event_type, function):
-        self.events[event_type] = function
+    #def set_event(self, event_type, function):
+        #self.events[event_type] = function
     
     def on_hover_in(self):
         self.change_color((175, 175, 175))
