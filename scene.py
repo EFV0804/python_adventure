@@ -27,7 +27,7 @@ class Scene:
             #Ground
             if(cell[0]=="ground"):
                 self.ground=Sprite(0,0,cell[1]+".png",False)
-                screen_h, screen_w = pygame.display.get_surface().get_size()
+                screen_w, screen_h = pygame.display.get_surface().get_size()
                 ground_height=screen_h - self.ground.surface.get_height()
                 self.ground.y=ground_height
                 #Background
@@ -51,7 +51,7 @@ class Scene:
                 height=0
                 if(cell[3]=="ground"):
                     height=-1
-                warp=Warp(int(cell[2]),height,cell[1]+".png",False,cell[4])
+                warp=Warp(int(cell[2]),height,cell[1]+".png",False,eval(cell[4]))
                 self.warps.append(warp)
         # Set Height
         if(self.hero.y==-1):

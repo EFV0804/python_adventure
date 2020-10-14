@@ -11,8 +11,8 @@ def main():
 
 
 
-    level00 = Scene('level00.lvl')
-    level01 = Scene('level01.lvl')
+    level00 = Scene("level00.lvl")
+    level01 = Scene("level01.lvl")
     scenes = {}
     scenes["level00"] = level00
     scenes["level01"] = level01
