@@ -6,8 +6,8 @@ class UiPanel(UiElements):
         UiElements.__init__(self, x, y, w, h)
         self.color = (255,255,255)
         self.is_hover = False
-        UiElements.add_event(self, "hover_in", self.on_hover_in)
-        UiElements.add_event(self, "hover_out", self.on_hover_out)
+        UiElements.add_event(self, "hover_in", self.on_hover_in) #use Ui Element method to add event to events map(in ui_elements.py). "hover_in" is the key and self.on_hover... function
+        UiElements.add_event(self, "hover_out", self.on_hover_out)  #use Ui Element method to add event to events map(in ui_elements.py)
     
     #def set_event(self, event_type, function):
         #self.events[event_type] = function

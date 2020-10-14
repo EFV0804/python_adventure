@@ -3,6 +3,7 @@ from sprite_controlled import SpriteControlled
 from sprite import Sprite
 from warp import Warp
 from ui_panel import UiPanel
+from ui_group import UiGroup
 
 class Scene:
 
@@ -18,12 +19,20 @@ class Scene:
 
         ground_height=0
         self.cursor=Sprite(0,0,"cursor.png",False)
+        #create maps
         self.sprites=[]
         self.warps=[]
+
         self.font = pygame.font.Font(None, 24) #define font
         self.collision_text = self.font.render("Move! Fool!", False, (0,0,0,)) #declare variable to display in case of collision
-        self.panel = UiPanel(0,0,800,100)
+
+        #UI
+        self.ui_top = UiGroup()
+        panel = UiPanel(0,0,800,100)
+        self.ui_top.add_element(panel)
         #self.panel.set_visible(True)
+
+
 
         for line in data:
             cell=line.split(";")
@@ -72,14 +81,15 @@ class Scene:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_click = pygame.mouse.get_pos()
                 self.hero.move_to(mouse_click[0])
+        self.ui_top.inputs(events)
 
     def update(self, change_scene):
         self.cursor.set_position(pygame.mouse.get_pos())
         self.hero.update()
-        self.panel.update()
         for w in self.warps:
             if(self.hero.intersects(w)):
                 change_scene(w.to_scene, w.to_scene_x)
+        self.ui_top.update()
 
     def draw(self, screen):
         self.background.draw(screen)
@@ -89,7 +99,7 @@ class Scene:
         for w in self.warps:
             w.draw(screen)
         self.hero.draw(screen)
-        self.panel.draw(screen)
+        self.ui_top.draw(screen)
         self.cursor.draw(screen)
         for s in self.sprites:
             if self.hero.intersects(s): #if there's a collision between hero and friend (class method)

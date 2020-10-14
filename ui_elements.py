@@ -14,3 +14,9 @@ class UiElements:
 
     def add_event(self, event_type, function):
         self.events[event_type] = function
+
+    def inputs(self, events):
+        pass
+
+    def update(self):
+        pass
