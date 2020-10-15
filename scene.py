@@ -4,6 +4,7 @@ from sprite import Sprite
 from warp import Warp
 from ui_panel import UiPanel
 from ui_group import UiGroup
+from ui_button import UiButton
 
 class Scene:
 
@@ -30,6 +31,9 @@ class Scene:
         self.ui_top = UiGroup()
         panel = UiPanel(0,0,800,100)
         self.ui_top.add_element(panel)
+
+        button0 = UiButton(10, 10, 50, 50, "button0")
+        self.ui_top.add_element(button0)
         #self.panel.set_visible(True)
 
 
@@ -80,12 +84,14 @@ class Scene:
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_click = pygame.mouse.get_pos()
-                self.hero.move_to(mouse_click[0])
+                if(mouse_click[1] > self.ui_top.elements[0].h):
+                    self.hero.move_to(mouse_click[0])
         self.ui_top.inputs(events)
 
     def update(self, change_scene):
         self.cursor.set_position(pygame.mouse.get_pos())
         self.hero.update()
+        self.ui_top.update()
         for w in self.warps:
             if(self.hero.intersects(w)):
                 change_scene(w.to_scene, w.to_scene_x)
