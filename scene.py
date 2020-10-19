@@ -8,7 +8,7 @@ from ui_button import UiButton
 
 class Scene:
 
-    path = 'D:\\ARTFX\\3D3-Prog\\BLAISE_CAZALET_G\\python\\Exercice\\Vidal_Elise\\python_Adventure\\'
+    path = 'D:\\ARTFX\\3D3-Prog\\BLAISE_CAZALET_G\\python\\Exercice\\Vidal_Elise\\python_Adventure\\data\\'
 
     def __init__(self, filename):
         self.filename = filename
@@ -27,12 +27,11 @@ class Scene:
         self.font = pygame.font.Font(None, 24) #define font
         self.collision_text = self.font.render("Move! Fool!", False, (0,0,0,)) #declare variable to display in case of collision
 
-        #UI
+        #UI Group
         self.ui_top = UiGroup()
         panel = UiPanel(0,0,800,100)
-        self.ui_top.add_element(panel)
-
         button0 = UiButton(10, 10, 50, 50, "button0")
+        self.ui_top.add_element(panel)
         self.ui_top.add_element(button0)
         #self.panel.set_visible(True)
 

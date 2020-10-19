@@ -1,5 +1,0 @@
-background;background
-ground;ground
-hero;hero;0;ground;2
-sprite;friend;300;ground
-warp;warp;700;ground;("level01", 50)

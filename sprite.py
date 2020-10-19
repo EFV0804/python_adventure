@@ -1,7 +1,7 @@
 import pygame, sys
 import math
 class Sprite:
-    path = 'D:\\ARTFX\\3D3-Prog\\BLAISE_CAZALET_G\\python\\Exercice\\Vidal_Elise\\python_Adventure\\' #Declare path variable for Sprite class
+    path = 'D:\\ARTFX\\3D3-Prog\\BLAISE_CAZALET_G\\python\\Exercice\\Vidal_Elise\\python_Adventure\\images\\' #Declare path variable for Sprite class
 
     def __init__(self, x, y , filename, centered): #This the constructor, it's the function used to create the sprites. All parameters except "self" need to be specified
         self.x = x
