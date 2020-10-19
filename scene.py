@@ -1,6 +1,7 @@
 import pygame
 from sprite_controlled import SpriteControlled
 from sprite import Sprite
+from sprite_animated import SpriteAnimated
 from warp import Warp
 from ui_panel import UiPanel
 from ui_group import UiGroup
@@ -23,6 +24,8 @@ class Scene:
         #create maps
         self.sprites=[]
         self.warps=[]
+        #self.messages=[]
+        #self.observers=[]
 
         self.font = pygame.font.Font(None, 24) #define font
         self.collision_text = self.font.render("Move! Fool!", False, (0,0,0,)) #declare variable to display in case of collision
@@ -53,7 +56,7 @@ class Scene:
                 height=0
                 if(cell[3]=="ground"):
                     height=-1
-                self.hero = SpriteControlled(int(cell[2]),ground_height,cell[1]+".png",True,int(cell[4]))
+                self.hero = SpriteAnimated(int(cell[2]), height, True, int(cell[4]), "idle")
                 #sprite
             elif(cell[0]=="sprite"):
                 height=0
@@ -61,6 +64,13 @@ class Scene:
                     height=-1
                 sprite = Sprite(int(cell[2]),height,cell[1]+".png",True)
                 self.sprites.append(sprite)
+
+            #elif(cell[0]=="stateful"):
+                #height=0
+                #if(cell[3]=="ground"):
+                    #height=-1
+                #sprite = SpriteStateful(int(cell[2]),height,eval(cell[1]),True), eval(cell[4], cell[5])
+                #self.observers.append(sprite)
                 #Warp
             elif(cell[0]=="warp"):
                 height=0
@@ -95,6 +105,13 @@ class Scene:
             if(self.hero.intersects(w)):
                 change_scene(w.to_scene, w.to_scene_x)
         self.ui_top.update()
+        #for message in self.messages:
+            #for observer in self.observers:
+                #observer.notify(message)
+        #self.message.clear()
+
+    #def send_message(self, message):
+        #self.messages.append(message)
 
     def draw(self, screen):
         self.background.draw(screen)
