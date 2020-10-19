@@ -1,6 +1,6 @@
 background;background1
 ground;ground1
 hero;hero;0;ground;2
-sprite;friend;300;ground
-sprite;friend;100;ground
+friend;friend;300;ground;2
+friend;friend;100;ground;2
 warp;warp;700;ground;("level00", 50)

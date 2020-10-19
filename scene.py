@@ -56,14 +56,15 @@ class Scene:
                 height=0
                 if(cell[3]=="ground"):
                     height=-1
-                self.hero = SpriteAnimated(int(cell[2]), height, True, int(cell[4]), "idle")
+                self.hero = SpriteAnimated(int(cell[2]), height, cell[1], True, int(cell[4]), "idle")
                 #sprite
-            elif(cell[0]=="sprite"):
+            elif(cell[0]=="friend"):
                 height=0
                 if(cell[3]=="ground"):
                     height=-1
-                sprite = Sprite(int(cell[2]),height,cell[1]+".png",True)
-                self.sprites.append(sprite)
+                friend = Sprite(int(cell[2]),height,cell[1]+".png",True)
+                #self.friend = SpriteAnimated(int(cell[2]), height, cell[1], True, int(cell[4]), "idle")
+                self.sprites.append(friend)
 
             #elif(cell[0]=="stateful"):
                 #height=0
@@ -100,6 +101,7 @@ class Scene:
     def update(self, change_scene):
         self.cursor.set_position(pygame.mouse.get_pos())
         self.hero.update()
+        #self.friend.update()
         self.ui_top.update()
         for w in self.warps:
             if(self.hero.intersects(w)):

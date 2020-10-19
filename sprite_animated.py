@@ -3,11 +3,12 @@ from sprite_controlled import SpriteControlled
 from animation import Animation
 
 class SpriteAnimated(SpriteControlled):
-    def __init__(self, x, y, centered, speed, base_animation):
+    def __init__(self, x, y, filename, centered, speed, base_animation):
         self.animations = {}
-        self.animations["idle"] = Animation(1, 50, "hero_idle.png")
-        self.animations["walking"] = Animation(8, 10, "hero_walking.png")
-        SpriteControlled.__init__(self, x, y, "hero_idle.png", centered, speed)
+        self.filename = filename
+        self.animations["idle"] = Animation(1, 50, filename+"_idle.png")
+        self.animations["walking"] = Animation(8, 50, filename+"_walking.png")
+        SpriteControlled.__init__(self, x, y, filename+"_idle.png", centered, speed)
         self.current_animation = base_animation
 
     def update(self):

@@ -1,6 +1,6 @@
 background;background
 ground;ground
 hero;hero;0;ground;2
-sprite;friend;300;ground
+friend;friend;300;ground;2
 stateful;["friend_happy","friend"];300;ground,["happy","upset"];upset
 warp;warp;700;ground;("level01", 50)
