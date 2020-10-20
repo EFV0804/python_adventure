@@ -8,8 +8,9 @@ def main():
     quit_game = False
     pygame.mouse.set_visible(False) #Hide the mouse to leave only the cursor sprite visible
 
-    level00 = Scene("level00.lvl")
-    level01 = Scene("level01.lvl")
+    inventory = []
+    level00 = Scene("level00.lvl", inventory)
+    level01 = Scene("level01.lvl", inventory)
     scenes = {}
     scenes["level00"] = level00
     scenes["level01"] = level01
@@ -17,9 +18,11 @@ def main():
 
     def change_scene(name, x):
         nonlocal current_scene
+        current_scene.after_change()
         current_scene = scenes[name]
         current_scene.hero.x = x
         current_scene.hero.is_moving = False
+
 
     #Game Loop
     while not(quit_game): #while the "quit" bool is false
