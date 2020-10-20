@@ -1,10 +1,10 @@
 import pygame
 from ui_elements import UiElements
 from sprite import Sprite
-#from message import Message
+from message import Message
 
 class UiButton(UiElements):
-    def __init__(self, x, y, w, h, filename):
+    def __init__(self, x, y, w, h, filename, send_message):
         UiElements.__init__(self, x, y, w, h)
         #self.color = (0, 0, 255)
         UiElements.add_event(self, "hover_in", self.on_hover_in)
@@ -18,7 +18,8 @@ class UiButton(UiElements):
         #self.surface = pygame.Surface((self.w, self.h)) we already get the surface from the Sprite class
         self.is_hover = False
         self.is_clicked = False
-        #self.send_message = send_message
+
+        self.send_message = send_message
 
     def change_color(self, color):
         self.color = color
@@ -26,14 +27,16 @@ class UiButton(UiElements):
     def on_hover_in(self):
         self.current_sprite = self.sprite_hover
         #self.change_color((0,255,0))
+
     def on_hover_out(self):
         self.current_sprite = self.sprite_idle
         #self.change_color((0, 0, 255))
 
     def on_click(self):
         self.current_sprite = self.sprite_click
-        #self.send_message(Message("cange_state","happy"))
+        self.send_message(Message("change_state","happy"))
         #self.change_color((255,0,0))
+
     def on_release(self):
         if(self.is_hover):
             self.current_sprite = self.sprite_hover

@@ -2,6 +2,6 @@ background;background
 ground;ground
 hero;hero;0;ground;2
 friend;friend;300;ground
-stateful;["friend_happy","friend"];300;ground,["happy","upset"];upset
+stateful;["friend_happy.png","friend.png"];300;ground;["happy","friend"];friend
 warp;warp;700;ground;("level01", 50)
-pickable;banana;250;ground
+pickable;banana;500;ground
